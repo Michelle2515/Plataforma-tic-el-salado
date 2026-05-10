@@ -8,9 +8,11 @@
 <h1>Bienvenido a la Plataforma TIC</h1>
 
 <h2>Registro</h2>
-<input type="text" placeholder="Usuario">
-<input type="password" placeholder="Contraseña">
-<button>Registrarse</button>
+<input type="text" id="usuario" placeholder="Usuario">
+<input type="password" id="contrasena" placeholder="Contraseña">
+<button onclick="registrar()">Registrarse</button>
+
+<p id="mensajeRegistro"></p>
 
 <h2>Cursos disponibles</h2>
 <ul>
@@ -21,8 +23,42 @@
 
 <h2>Actividad</h2>
 <p>¿Qué son las TIC?</p>
-<input type="text">
-<button>Responder</button>
+<input type="text" id="respuesta">
+<button onclick="guardarRespuesta()">Responder</button>
+
+<p id="mensajeActividad"></p>
+
+<script>
+function registrar() {
+    let usuario = document.getElementById("usuario").value;
+    let contrasena = document.getElementById("contrasena").value;
+
+    if (usuario === "" || contrasena === "") {
+        document.getElementById("mensajeRegistro").innerText = "Completa todos los campos";
+        document.getElementById("mensajeRegistro").style.color = "red";
+    } else {
+        localStorage.setItem("usuario", usuario);
+        localStorage.setItem("contrasena", contrasena);
+
+        document.getElementById("mensajeRegistro").innerText = "Se ha guardado correctamente ✅";
+        document.getElementById("mensajeRegistro").style.color = "green";
+    }
+}
+
+function guardarRespuesta() {
+    let respuesta = document.getElementById("respuesta").value;
+
+    if (respuesta === "") {
+        document.getElementById("mensajeActividad").innerText = "Escribe una respuesta";
+        document.getElementById("mensajeActividad").style.color = "red";
+    } else {
+        localStorage.setItem("respuesta", respuesta);
+
+        document.getElementById("mensajeActividad").innerText = "Respuesta guardada correctamente ✅";
+        document.getElementById("mensajeActividad").style.color = "green";
+    }
+}
+</script>
 
 </body>
 </html>
